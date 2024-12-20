@@ -6,7 +6,6 @@ const url = require('url');
 const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url, true);
 
-  // Ruta para devolver el JSON de relojes
   if (req.method === 'GET' && parsedUrl.pathname === '/public/relojes') {
     fs.readFile(path.join(__dirname, 'data', 'relojes.json'), (err, data) => {
       if (err) {
@@ -17,7 +16,6 @@ const server = http.createServer((req, res) => {
       res.end(data);
     });
   } 
-  // Ruta para servir cualquier archivo dentro de la carpeta "public"
   else {
     const publicDir = path.join(__dirname, 'public'); 
     const filePath = path.join(

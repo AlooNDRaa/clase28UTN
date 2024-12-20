@@ -1,12 +1,9 @@
-// Aquí cargamos los productos desde el archivo JSON.
-// Asegúrate de tener el archivo JSON correctamente en el servidor.
 const productos = [
   { id: 1, nombre: "Reloj Elegante", precio: 199, imagen: "reloj1.jpg" },
   { id: 2, nombre: "Reloj Deportivo", precio: 120, imagen: "reloj2.jpg" },
   { id: 3, nombre: "Reloj Clásico", precio: 150, imagen: "reloj3.jpg" },
 ];
 
-// Función para cargar los productos en el catálogo
 function cargarProductos() {
   const contenedorProductos = document.getElementById("productos-container");
   contenedorProductos.innerHTML = ""; 
@@ -24,7 +21,6 @@ function cargarProductos() {
   });
 }
 
-// Función para agregar un producto al carrito
 function agregarAlCarrito(id) {
   const producto = productos.find((p) => p.id === id);
 
@@ -43,7 +39,6 @@ function agregarAlCarrito(id) {
   }
 }
 
-// Función para mostrar el carrito
 function mostrarCarrito() {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   const carritoContainer = document.getElementById("carrito-container");
@@ -72,7 +67,6 @@ function mostrarCarrito() {
   }
 }
 
-// Función para eliminar un producto del carrito
 function eliminarDelCarrito(id) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   carrito = carrito.filter((item) => item.id !== id);
@@ -81,7 +75,6 @@ function eliminarDelCarrito(id) {
   mostrarCarrito();
 }
 
-// Función para editar la cantidad de un producto en el carrito
 function editarCantidad(id, operacion) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   const producto = carrito.find((item) => item.id === id);
@@ -98,13 +91,12 @@ function editarCantidad(id, operacion) {
   }
 }
 
-// Función para vaciar el carrito y mostrar mensaje de pago
 function pagar() {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   if (carrito.length > 0) {
-    carrito = []; // Vaciar carrito
-    localStorage.setItem("carrito", JSON.stringify(carrito)); // Actualizar en localStorage
+    carrito = []; 
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 
     alert("¡Gracias por tu compra! El carrito se ha vaciado.");
     mostrarCarrito();
@@ -113,13 +105,11 @@ function pagar() {
   }
 }
 
-// Función para cerrar sesión
 function cerrarSesion() {
-  localStorage.removeItem("usuario"); // Eliminar usuario de la sesión
-  window.location.href = "index.html"; // Redirigir a la página de login (index.html)
+  localStorage.removeItem("usuario"); 
+  window.location.href = "../index.html"; 
 }
 
-// Llamar a esta función cuando cargue la página
 document.addEventListener("DOMContentLoaded", () => {
   cargarProductos();
   mostrarCarrito();
